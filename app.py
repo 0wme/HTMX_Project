@@ -28,6 +28,15 @@ def delete_todo(todo_id):
         del todos[todo_id]
     return redirect(url_for('todo_list'))
 
+@app.route('/favorite/<int:todo_id>', methods=['POST'])
+def favorite_todo(todo_id):
+    if 0 <= todo_id < len(todos):
+        todos[todo_id]['favorite'] = not todos[todo_id]['favorite']
+        if todos[todo_id]['favorite']:
+            todo = todos.pop(todo_id)
+            todos.insert(0, todo)  # Déplace la tâche en haut de la liste
+    return redirect(url_for('todo_list'))
+
 
 
 if __name__ == '__main':
