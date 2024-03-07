@@ -2,8 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-# Initialisez vos tâches avec un champ 'favorite'
-todos = []  # Exemple: [{'content': 'Faire les courses', 'completed': False, 'favorite': False}]
+todos = []
 
 @app.route('/')
 def todo_list():
@@ -34,13 +33,13 @@ def favorite_todo(todo_id):
         todos[todo_id]['favorite'] = not todos[todo_id]['favorite']
         if todos[todo_id]['favorite']:
             todo = todos.pop(todo_id)
-            todos.insert(0, todo)  # Déplace la tâche en haut de la liste
+            todos.insert(0, todo)
     return redirect(url_for('todo_list'))
 
 @app.route('/reset', methods=['POST', 'GET'])
 def reset_todos():
     global todos
-    todos = []  # Réinitialiser la liste des tâches
+    todos = []
     return redirect(url_for('todo_list'))
 
 if __name__ == '__main__':
