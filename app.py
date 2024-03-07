@@ -37,7 +37,11 @@ def favorite_todo(todo_id):
             todos.insert(0, todo)  # Déplace la tâche en haut de la liste
     return redirect(url_for('todo_list'))
 
-
+@app.route('/reset', methods=['POST', 'GET'])
+def reset_todos():
+    global todos
+    todos = []  # Réinitialiser la liste des tâches
+    return redirect(url_for('todo_list'))
 
 if __name__ == '__main':
     app.run(debug=True)
