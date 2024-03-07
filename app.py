@@ -16,6 +16,12 @@ def add_todo():
         todos.append({'content': todo_content, 'completed': False, 'favorite': False})
     return redirect(url_for('todo_list'))
 
+@app.route('/complete/<int:todo_id>', methods=['POST'])
+def complete_todo(todo_id):
+    if 0 <= todo_id < len(todos):
+        todos[todo_id]['completed'] = not todos[todo_id]['completed']
+    return redirect(url_for('todo_list'))
+
 
 
 if __name__ == '__main':
