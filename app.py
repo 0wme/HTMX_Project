@@ -22,6 +22,12 @@ def complete_todo(todo_id):
         todos[todo_id]['completed'] = not todos[todo_id]['completed']
     return redirect(url_for('todo_list'))
 
+@app.route('/delete/<int:todo_id>', methods=['POST'])
+def delete_todo(todo_id):
+    if 0 <= todo_id < len(todos):
+        del todos[todo_id]
+    return redirect(url_for('todo_list'))
+
 
 
 if __name__ == '__main':
