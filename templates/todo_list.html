@@ -9,6 +9,7 @@
     <form method="post" action="/add" hx-post="/add" hx-target="this" hx-swap="outerHTML">
         <input type="text" name="content" autofocus placeholder="Ajouter une nouvelle tâche">
         <button type="submit" class="add-button">Ajouter</button>
+        <button type="button" class="reset-button" onclick="location.href='/reset'">Réinitialiser</button>
     </form>
     <ul>
         {% for todo in todos %}
