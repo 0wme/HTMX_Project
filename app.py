@@ -1,14 +1,14 @@
-from os import name
+from flask import Flask, render_template, request, redirect, url_for
 
-from flask import Flask, rendertemplate, request, redirect, urlfor, url_for
+app = Flask(__name__)
 
-app = Flask(name)
-
+# Initialisez vos tâches avec un champ 'favorite'
 todos = []  # Exemple: [{'content': 'Faire les courses', 'completed': False, 'favorite': False}]
 
 @app.route('/')
-def todolist():
-    return rendertemplate('todo_list.html', todos=todos)
+def todo_list():
+    return render_template('todo_list.html', todos=todos)
+
 @app.route('/add', methods=['POST'])
 def add_todo():
     todo_content = request.form.get('content')
@@ -43,5 +43,5 @@ def reset_todos():
     todos = []  # Réinitialiser la liste des tâches
     return redirect(url_for('todo_list'))
 
-if __name__ == '__main':
+if __name__ == '__main__':
     app.run(debug=True)
