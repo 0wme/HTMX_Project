@@ -16,6 +16,11 @@
                 <span class="todo-content" {% if todo.completed %} style="text-decoration: line-through;" {% endif %}>
                     {{ todo.content }}
                 </span>
+                <div class="todo-actions">
+                    <form method="post" action="/complete/{{ loop.index0 }}" hx-post="/complete/{{ loop.index0 }}" hx-target="closest li">
+                        <button type="submit" class="validate-button">Valider</button>
+                    </form>
+                </div>
             </li>
         {% endfor %}
     </ul>
