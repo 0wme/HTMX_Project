@@ -20,6 +20,9 @@
                     <form method="post" action="/complete/{{ loop.index0 }}" hx-post="/complete/{{ loop.index0 }}" hx-target="closest li">
                         <button type="submit" class="validate-button">Valider</button>
                     </form>
+                    <form method="post" action="/delete/{{ loop.index0 }}" hx-post="/delete/{{ loop.index0 }}" hx-target="closest li" hx-swap="outerHTML">
+                        <button type="submit" class="delete-button">Supprimer</button>
+                    </form>
                 </div>
             </li>
         {% endfor %}
